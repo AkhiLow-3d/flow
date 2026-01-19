@@ -58,6 +58,21 @@ function updateBreadcrumb() {
   elBreadcrumb.textContent = trailLabels.length ? `経路: ${trailLabels.join(" > ")}` : "";
 }
 
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function renderTips(tips) {
+  if (!Array.isArray(tips) || tips.length === 0) return "";
+  const items = tips.map(t => `<li>${escapeHtml(t)}</li>`).join("");
+  return `<ul class="tips">${items}</ul>`;
+}
+
 
 function setButtonsEnabled(page) {
   btnBack.disabled = historyStack.length === 0;
@@ -74,6 +89,7 @@ function setButtonsEnabled(page) {
     btnNext.style.display = "inline-block";
   }
 }
+
 
 
 function renderPage(id) {
@@ -317,6 +333,7 @@ async function init() {
 }
 
 init();
+
 
 
 
