@@ -79,7 +79,9 @@ function setButtonsEnabled(page) {
 function renderPage(id) {
   clearError();
 
+  
   const page = getPage(id);
+  
   if (!page) {
     showError(`ページが見つかりません: ${id}\n(data.json の next 指定が間違っている可能性)`);
     btnNext.disabled = true;
@@ -136,6 +138,9 @@ function renderPage(id) {
       elChoices.appendChild(wrap);
     });
   }
+  
+  const card = document.querySelector(".card");
+  card.classList.toggle("result", page.type === "result");
 
   setButtonsEnabled(page);
 }
@@ -312,5 +317,6 @@ async function init() {
 }
 
 init();
+
 
 
