@@ -43,9 +43,21 @@ function getPage(id) {
 }
 
 function updateBreadcrumb() {
-  const trail = [...historyStack, currentId].filter(Boolean);
-  elBreadcrumb.textContent = trail.length ? `経路: ${trail.join(" > ")}` : "";
+  // trail = 履歴 + 現在
+  const trailIds = [...historyStack, currentId].filter(Boolean);
+
+  // タイトルがあればタイトル、なければIDを表示
+  const trailLabels = trailIds.map((id) => {
+  const p = getPage(id);
+  const title = p?.title?.trim();
+  return title ? `${title} (${id})` : id;
+});
+
+
+  // 例: 経路: スタート > 雪景色の方向性 > 結果：静かな雪
+  elBreadcrumb.textContent = trailLabels.length ? `経路: ${trailLabels.join(" > ")}` : "";
 }
+
 
 function setButtonsEnabled(page) {
   btnBack.disabled = historyStack.length === 0;
@@ -298,3 +310,4 @@ async function init() {
 }
 
 init();
+
