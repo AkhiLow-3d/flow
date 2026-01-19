@@ -47,6 +47,34 @@ body {
   padding: 18px;
 }
 
+/* result 専用 */
+.card.result {
+  border-color: rgba(90,169,255,0.4);
+  background: linear-gradient(
+    180deg,
+    rgba(90,169,255,0.08),
+    var(--card)
+  );
+}
+
+.result .title {
+  font-size: 24px;
+}
+
+.result .text {
+  margin-top: 12px;
+  line-height: 1.8;
+}
+
+.result-hint {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+
 .meta {
   display: flex;
   align-items: center;
@@ -137,3 +165,4 @@ body {
   padding: 14px 12px 26px;
   border-top: 1px solid var(--line);
 }
+
