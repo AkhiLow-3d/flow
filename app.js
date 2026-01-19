@@ -95,9 +95,8 @@ function setButtonsEnabled(page) {
 function renderPage(id) {
   clearError();
 
-  
   const page = getPage(id);
-  
+
   if (!page) {
     showError(`ページが見つかりません: ${id}\n(data.json の next 指定が間違っている可能性)`);
     btnNext.disabled = true;
@@ -110,7 +109,16 @@ function renderPage(id) {
   elPageType.textContent = page.type || "question";
   elPageId.textContent = `ID: ${page.id}`;
   elTitle.textContent = page.title ?? "";
-  elText.textContent = page.text ?? "";
+
+  // ★ここがポイント：resultのときだけ innerHTML で tips を表示
+  if ((page.type || "question") === "result") {
+    elText.innerHTML = `
+      <div>${escapeHtml(page.text ?? "")}</div>
+      ${renderTips(page.tips)}
+    `;
+  } else {
+    elText.textContent = page.text ?? "";
+  }
 
   // Clear choices
   elChoices.innerHTML = "";
@@ -154,12 +162,13 @@ function renderPage(id) {
       elChoices.appendChild(wrap);
     });
   }
-  
+
   const card = document.querySelector(".card");
   card.classList.toggle("result", page.type === "result");
 
   setButtonsEnabled(page);
 }
+
 
 function getSelectedChoiceIndex() {
   const checked = elChoices.querySelector('input[type="radio"]:checked');
@@ -333,6 +342,7 @@ async function init() {
 }
 
 init();
+
 
 
 
