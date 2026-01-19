@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Branch Flow Player</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="left">
+      <button id="btnBack" class="btn" type="button">← 戻る</button>
+    </div>
+    <div class="center">
+      <div id="breadcrumb" class="breadcrumb"></div>
+    </div>
+    <div class="right">
+      <button id="btnRestart" class="btn btn-ghost" type="button">最初に戻る</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="meta">
+        <span id="pageType" class="chip">question</span>
+        <span id="pageId" class="pageid"></span>
+      </div>
+
+      <h1 id="title" class="title"></h1>
+      <p id="text" class="text"></p>
+
+      <div id="choicesArea" class="choices"></div>
+
+      <div class="actions">
+        <div class="hint" id="hint"></div>
+        <button id="btnNext" class="btn btn-primary" type="button">次へ →</button>
+      </div>
+
+      <div id="errorBox" class="error" hidden></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>data.json を差し替えるだけで分岐が変わります。</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
