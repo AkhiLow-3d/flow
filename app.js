@@ -64,15 +64,17 @@ function setButtonsEnabled(page) {
   btnRestart.disabled = !DATA || !DATA.startPageId;
 
   if (!page) {
-    btnNext.disabled = true;
+    btnNext.style.display = "none";
     return;
   }
+
   if (page.type === "result") {
-    btnNext.disabled = true;
+    btnNext.style.display = "none";   // ← ここ重要
   } else {
-    btnNext.disabled = false;
+    btnNext.style.display = "inline-block";
   }
 }
+
 
 function renderPage(id) {
   clearError();
@@ -310,4 +312,5 @@ async function init() {
 }
 
 init();
+
 
