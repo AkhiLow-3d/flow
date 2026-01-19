@@ -166,3 +166,15 @@ body {
   border-top: 1px solid var(--line);
 }
 
+/* result tips */
+.tips {
+  margin: 14px 0 0;
+  padding-left: 18px;
+  color: var(--text);
+}
+.tips li {
+  margin: 8px 0;
+  line-height: 1.8;
+}
+
+
